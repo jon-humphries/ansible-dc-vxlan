@@ -73,6 +73,9 @@ factory_defaults:
           enable_local_dhcp_server: false
           enable_cdp_mgmt: false
       ibgp:
+        security:
+          enable_sgt: false
+          sgt_mac_segmentation: false
         route_reflectors: 2
         anycast_gateway_mac: 20:20:00:00:00:aa
         auth_proto: MD5
@@ -465,6 +468,8 @@ factory_defaults:
       anycast_gateway_mac: 20:20:00:00:00:aa
       vtep_loopback_id: 100
       bgw_ip_tag: 54321
+      security:
+        enable_sgt: false
       ipv4_vtep_loopback_range: 10.10.0.0/24
       ipv6_vtep_loopback_range: fd00::a10:0/120
       overlay_dci:

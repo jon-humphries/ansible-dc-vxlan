@@ -1,9 +1,13 @@
 {# Auto-generated NDFC DC VXLAN EVPN Security config data structure for fabric {{ vxlan.fabric.name }} #}
+{# SGT is driven by the data model key vxlan.global.ibgp.security.enable_sgt (default false). #}
+{# NDFC does not support SGT together with an IPv6 underlay, so the key is only #}
+{# emitted for IPv4 underlay fabrics - matching upstream behaviour. #}
 {% if not (vxlan.underlay.general.enable_ipv6_underlay | default(defaults.vxlan.underlay.general.enable_ipv6_underlay) | ansible.builtin.bool) %}
-{% set enable_sgt = false %}
+{% set enable_sgt = vxlan.global.ibgp.security.enable_sgt | default(defaults.vxlan.global.ibgp.security.enable_sgt) | ansible.builtin.bool %}
+{% set sgt_mac_segmentation = vxlan.global.ibgp.security.sgt_mac_segmentation | default(defaults.vxlan.global.ibgp.security.sgt_mac_segmentation) | ansible.builtin.bool %}
   ENABLE_SGT: {{ enable_sgt | lower }}
 {% if enable_sgt and (ndfc_version | cisco.nac_dc_vxlan.version_compare('12.5.0', '>=')) %}
-  securityGroupTagMacSegmentation: false
-  securityGroupTagMacSegmentation_PREV: false
+  securityGroupTagMacSegmentation: {{ sgt_mac_segmentation | lower }}
+  securityGroupTagMacSegmentation_PREV: {{ sgt_mac_segmentation | lower }}
 {% endif %}
 {% endif %}

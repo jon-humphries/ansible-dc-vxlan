@@ -1,2 +1,4 @@
 {# Auto-generated NDFC MCFG Security config data structure for fabric {{ vxlan.fabric.name }} #}
-  ENABLE_SGT: "off"
+{# SGT is driven by the data model key vxlan.multisite.security.enable_sgt (default false). #}
+{% set enable_sgt = vxlan.multisite.security.enable_sgt | default(defaults.vxlan.multisite.security.enable_sgt) | ansible.builtin.bool %}
+  ENABLE_SGT: "{{ 'on' if enable_sgt else 'off' }}"

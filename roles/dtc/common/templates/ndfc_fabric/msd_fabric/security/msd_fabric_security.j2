@@ -1,2 +1,4 @@
 {# Auto-generated NDFC MSD Security config data structure for fabric {{ vxlan.fabric.name }} #}
+{% if not (vxlan.multisite.sgt_passthrough | default(defaults.vxlan.multisite.sgt_passthrough) | ansible.builtin.bool) %}
   ENABLE_SGT: "off"
+{% endif %}

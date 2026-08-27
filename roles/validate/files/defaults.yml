@@ -74,6 +74,7 @@ factory_defaults:
           enable_cdp_mgmt: false
       ibgp:
         route_reflectors: 2
+        sgt_passthrough: false
         anycast_gateway_mac: 20:20:00:00:00:aa
         auth_proto: MD5
         enable_nxapi_http: false
@@ -490,6 +491,7 @@ factory_defaults:
         from: 50000
         to: 59000
       enable_ipv6_underlay: false
+      sgt_passthrough: false
       anycast_gateway_mac: 20:20:00:00:00:aa
       vtep_loopback_id: 100
       bgw_ip_tag: 54321
